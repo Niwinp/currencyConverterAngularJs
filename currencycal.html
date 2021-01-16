@@ -1,0 +1,137 @@
+<!DOCUMENT html>
+<html>
+<head>
+    <title>Angular currency calc DEMO</title>
+    <script src="https://code.angularjs.org/1.5.7/angular.min.js"></script>
+</head>
+<style>
+body { background-color:powderblue}
+h2 { color : white }
+</style>
+<body ng-app="app">
+<H2>Currency Calculator - 18IT056 NIWIN P - SEM LAB</h2>
+<div ng-controller="ctrl">
+	<table>
+	<tr><td>From</td><td>To</td></tr>
+	<tr>
+	<td><input type="text" ng-model="fromamount" /></td>
+	<td><input type="text" ng-model="toamount" /></td>
+	</tr>
+	<br>
+	<tr>
+	<td>
+	<select ng-model='fromcurr'>
+		<option>USD</option>
+		<option>INR</option>
+		<option>EURO</option>
+	</select>
+	</td>
+	<td>
+	<select ng-model='tocurr'>
+		<option>USD</option>
+		<option>INR</option>
+		<option>EURO</option>
+	</select>
+	</td>
+	</tr>
+	<br>
+	<tr>
+	<td><button ng-click="convert()">Convert</button></td>
+	<td><button ng-click="swap()">Swap</button></td>
+	</tr>
+	</table>
+	</div>
+	</body>
+	
+
+<script>
+var app = angular.module("app",[]);
+app.controller("ctrl",function($scope)
+{
+
+$scope.fromamount = 1;
+$scope.toamount = 0;
+$scope.fromcurr ="USD";
+$scope.tocurr ="EURO";
+$scope.swap = function()
+{
+var temp = $scope.fromamount;
+$scope.fromamount = $scope.toamount;
+$scope.toamount = temp;
+};
+
+$scope.convert = function()
+{
+	 
+if($scope.fromcurr =="USD")
+{
+	
+	if($scope.tocurr == "EURO")
+	{
+	 $scope.toamount = $scope.fromamount * 0.8061;
+	}
+	
+	if($scope.tocurr == "USD")
+	{
+	 $scope.toamount = $scope.fromamount;
+	}
+	
+	if($scope.tocurr == "INR")
+	{
+	 $scope.toamount = $scope.fromamount * 73.48;
+	}
+	
+
+}
+
+if($scope.fromcurr =="INR")
+{
+	
+	if($scope.tocurr == "USD")
+	{
+	 $scope.toamount = $scope.fromamount * 0.014;
+	}
+	
+	
+	if($scope.tocurr == "INR")
+	{
+	 $scope.toamount = $scope.fromamount;
+	}
+	
+	if($scope.tocurr == "EURO")
+	{
+	 $scope.toamount = $scope.fromamount * 0.011;
+	}
+
+}
+
+if($scope.fromcurr =="EURO")
+{
+	
+	if($scope.tocurr == "USD")
+	{
+	 $scope.toamount = $scope.fromamount * 1.22;
+	}
+	
+	if($scope.tocurr == "INR")
+	{
+	 $scope.toamount = $scope.fromamount * 89.46;
+	}
+	
+	if($scope.tocurr == "EURO")
+	{
+	 $scope.toamount = $scope.fromamount;
+	}
+	
+}
+
+
+};
+
+});
+
+
+
+
+</script>
+</html>	
